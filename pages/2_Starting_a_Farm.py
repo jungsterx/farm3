@@ -89,7 +89,7 @@ if check_password():
 
     # Section 4: Requirements to Start a Land-based Farm
     st.header("Requirements to Start a Land-based Farm")
-    image_url = "https://www.dropbox.com/scl/fi/8u3c122b6agtepdil4c09/Design.png?rlkey=20i8nqiswo6od3jplilsxm9q7&st=ul2nyjlz&dl=0"  # Permanent image URL
+    image_url = "https://raw.githubusercontent.com/jungsterx/farm3/refs/heads/main/Design.png?token=GHSAT0AAAAAACY3ZIE2PZP6HZOCSPKJYFM4ZYMXLMA"  # Permanent image URL
     st.image(image_url, use_column_width=True)
 
     # Define the links for each agency
