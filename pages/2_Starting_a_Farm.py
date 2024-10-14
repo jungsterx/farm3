@@ -52,7 +52,7 @@ if user_query:
 
 # Section 4: Requirements to Start a Land-based Farm
 st.header("Requirements to Start a Land-based Farm")
-image_url = "https://github.com/jungsterx/farm3/blob/1b73a6825c5ba237231581195476391b855a7842/Screenshot%202024-10-14%20120536.png"  # Update this with your image URL or local path
+image_url = "https://drive.google.com/file/d/1mp4V5SKHNxbh19gKetBBi99yYSwE2fT7/view?usp=sharing"  # Update this with your image URL or local path
 st.image(image_url, use_column_width=True)
 
 # Define the links for each agency
