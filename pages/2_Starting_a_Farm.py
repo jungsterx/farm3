@@ -53,25 +53,25 @@ if check_password():
         )
         return response.choices[0].message['content'].strip()
 
-# Predefined Eligibility Conditions
-eligibility_criteria = {
-    "UEN_registration": "You must be registered with ACRA.",
-    "secured_farm_space": "You must have secured a space for your farm.",
-    "submitted_plan": "You must have submitted your plan to SFA for approval.",
-}
+    # Predefined Eligibility Conditions
+    eligibility_criteria = {
+        "UEN_registration": "You must be registered with ACRA.",
+        "secured_farm_space": "You must have secured a space for your farm.",
+        "submitted_plan": "You must have submitted your plan to SFA for approval.",
+    }
 
-# Function to check eligibility based on user inputs
-def check_eligibility(uen, farm_space, plan_submitted):
-    if not uen:
-        return "You must provide a valid UEN number. You can check your UEN [here](https://www.uen.gov.sg/)."
-    
-    if not farm_space:
-        return eligibility_criteria["secured_farm_space"]
-    
-    if not plan_submitted:
-        return eligibility_criteria["submitted_plan"]
-    
-    return "Congratulations! You meet the eligibility requirements."
+    # Function to check eligibility based on user inputs
+    def check_eligibility(uen, farm_space, plan_submitted):
+        if not uen:
+            return "You must provide a valid UEN number. You can check your UEN [here](https://www.uen.gov.sg/)."
+        
+        if not farm_space:
+            return eligibility_criteria["secured_farm_space"]
+        
+        if not plan_submitted:
+            return eligibility_criteria["submitted_plan"]
+        
+        return "Congratulations! You meet the eligibility requirements."
 
     # Streamlit UI
     st.title("Starting a Land-based Farm: Available Grants, Licence Conditions and Requirements")
