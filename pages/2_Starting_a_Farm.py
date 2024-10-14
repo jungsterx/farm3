@@ -5,26 +5,49 @@ import pandas as pd
 # Set OpenAI API key
 openai.api_key = st.secrets["OPENAI_API_KEY"]
 
+# Custom CSS for styling
+st.markdown("""
+    <style>
+    .password-box input {
+        border: 2px solid black;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .chatbox input {
+        border: 2px solid black;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .chat-response {
+        border: 2px solid black;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #f0f0f0;
+    }
+    </style>
+    """, unsafe_allow_html=True)
+
 # Password protection logic
 def check_password():
     def password_entered():
         if st.session_state["password"] == st.secrets["password"]:
             st.session_state["password_correct"] = True
-            del st.session_state["password"]  # Remove password from session state after correct entry
+            del st.session_state["password"]
         else:
             st.session_state["password_correct"] = False
 
     if "password_correct" not in st.session_state:
-        # First time the app is loaded, show the password input
+        st.markdown('<div class="password-box">', unsafe_allow_html=True)
         st.text_input("Enter the password", type="password", on_change=password_entered, key="password")
+        st.markdown('</div>', unsafe_allow_html=True)
         return False
     elif not st.session_state["password_correct"]:
-        # Incorrect password
+        st.markdown('<div class="password-box">', unsafe_allow_html=True)
         st.text_input("Enter the password", type="password", on_change=password_entered, key="password")
+        st.markdown('</div>', unsafe_allow_html=True)
         st.error("Password is incorrect")
         return False
     else:
-        # Correct password, allow access to the page
         return True
 
 # Show the page content only if the password is correct
@@ -38,14 +61,14 @@ if check_password():
     def load_funds_data():
         return pd.read_csv('funds_grants.csv')
 
-    # LLM Query Function for the chatbot
+    # LLM Query Function for Chatbot using new OpenAI API (ChatCompletion)
     def query_llm(prompt):
-        response = openai.Completion.create(
-            engine="text-davinci-003",  # or whichever model you're using
-            prompt=prompt,
-            max_tokens=500
+        response = openai.ChatCompletion.create(
+            model="gpt-3.5-turbo",  # Use the GPT-3.5 turbo or any newer chat model
+            messages=[{"role": "system", "content": "You are an assistant for farm licensing in Singapore."},
+                      {"role": "user", "content": prompt}]
         )
-        return response.choices[0].text.strip()
+        return response.choices[0].message['content'].strip()
 
     # Streamlit UI for the main app sections
     st.title("Starting a Farm: Available Grants and Licence Conditions")
@@ -84,9 +107,16 @@ if check_password():
     {cattle_conditions}
     """
 
-    # Chatbot UI
+    # Chatbot UI with styled input box
+    st.markdown('<div class="chatbox">', unsafe_allow_html=True)
     user_query = st.text_input("Ask a question about licensing conditions:")
+    st.markdown('</div>', unsafe_allow_html=True)
+    
     if user_query:
         prompt = f"The following are licensing conditions:\n{all_conditions}\n\nUser question: {user_query}\nAnswer:"
         llm_response = query_llm(prompt)
+        
+        # Styled chat response box
+        st.markdown('<div class="chat-response">', unsafe_allow_html=True)
         st.write("Response:", llm_response)
+        st.markdown('</div>', unsafe_allow_html=True)
