@@ -83,19 +83,22 @@ if check_password():
 
     # Define the links for each agency
     links = {
-        "PUB": "https://www.pub.gov.sg",  # Singapore's National Water Agency
-        "SCDF": "https://www.scdf.gov.sg",  # Singapore Civil Defence Force
-        "URA": "https://www.ura.gov.sg",  # Urban Redevelopment Authority
-        "BCA": "https://www.bca.gov.sg",  # Building and Construction Authority
-        "NEA": "https://www.nea.gov.sg",  # National Environment Agency
-        "LTA": "https://www.lta.gov.sg",  # Land Transport Authority
-        "NParks": "https://www.nparks.gov.sg"  # National Parks Board
+        "PUB": "https://www.sfa.gov.sg/docs/default-source/food-farming/industry-guide/pub.pdf",  # Singapore's National Water Agency
+        "SCDF": "https://www.sfa.gov.sg/docs/default-source/food-farming/industry-guide/scdf.pdf",  # Singapore Civil Defence Force
+        "URA": "https://www.sfa.gov.sg/docs/default-source/food-farming/industry-guide/ura.pdf",  # Urban Redevelopment Authority
+        "BCA": "https://www.sfa.gov.sg/docs/default-source/food-farming/industry-guide/bca.pdf",  # Building and Construction Authority
+        "NEA": "https://www.sfa.gov.sg/docs/default-source/food-farming/industry-guide/nea.pdf",  # National Environment Agency
+        "LTA": "https://www.sfa.gov.sg/docs/default-source/food-farming/industry-guide/lta.pdf",  # Land Transport Authority
+        "NParks": "https://www.sfa.gov.sg/docs/default-source/food-farming/industry-guide/nparks.pdf"  # National Parks Board
     }
 
-    # Display buttons or links for each agency
-    for agency, url in links.items():
-        if st.button(agency):
-            st.markdown(f"[{agency}]({url})")
+    # Display buttons or links for each agency horizontally
+    cols = st.columns(len(links))  # Create a number of columns equal to the number of agencies
+
+    for col, (agency, url) in zip(cols, links.items()):
+        with col:
+            if st.button(agency):
+                st.markdown(f"[{agency}]({url})")
 
     # Optional: Add some styling for clarity
     st.markdown(
