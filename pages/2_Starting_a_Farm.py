@@ -69,13 +69,6 @@ if check_password():
         license_conditions = load_license_conditions()
         st.write(license_conditions)
 
-    # LLM Query Section (for additional user queries)
-    st.header("Ask a question")
-    user_query = st.text_input("Type your question here")
-    if user_query:
-        llm_response = query_llm(f"Q: {user_query}\nA:")
-        st.write(llm_response)
-
     # Section 4: Requirements to Start a Land-based Farm
     st.header("Requirements to Start a Land-based Farm")
     image_url = "https://raw.githubusercontent.com/jungsterx/farm3/refs/heads/main/Screenshot%202024-10-14%20120536.png?token=GHSAT0AAAAAACY3ZIE3U2D2L6RXSMKHNRBGZYMUSDQ"  # Update with your direct image URL
@@ -114,3 +107,10 @@ if check_password():
         """,
         unsafe_allow_html=True
     )
+
+    # Section 4: Requirements to Start a Land-based Farm: LLM Query Section (for additional user queries)
+    st.header("Ask a question")
+    user_query = st.text_input("Type your question here")
+    if user_query:
+        llm_response = query_llm(f"Q: {user_query}\nA:")
+        st.write(llm_response)
