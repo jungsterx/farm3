@@ -36,8 +36,13 @@ if check_password():
         return pd.read_csv('funds_grants.csv')
 
     def load_license_conditions():
-        with open('license_conditions.txt', 'r') as file:
-            return file.read()
+        return load_conditions('license_conditions.txt')
+
+    def load_poultry_conditions():
+        return load_conditions('poultry_conditions.txt')
+
+    def load_cattle_conditions():
+        return load_conditions('cattle_conditions.txt')
 
     # LLM Query Function
     def query_llm(prompt):
@@ -52,7 +57,7 @@ if check_password():
 
     # Section 1: Eligibility Requirement
     st.header("Eligibility Requirement")
-    st.write("""
+    st.write(""" 
     1. You must be registered with the Accounting and Corporate Regulatory Authority (ACRA) and have a UEN issued by ACRA.
     2. You must have secured a space for your farm, submitted your plan for farming at the premises to SFA for endorsement, obtained clearance from relevant agencies, and commenced small-scale production.
     """)
@@ -63,15 +68,28 @@ if check_password():
         funds_data = load_funds_data()
         st.write(funds_data)
 
-    # Section 3: License Conditions for Land-based Farms
+    # Section 3: License Conditions with Tabs
     st.header("License Conditions")
-    if st.button("Show License Conditions"):
-        license_conditions = load_license_conditions()
-        st.write(license_conditions)
+    tabs = st.tabs(["Land-based Farms", "Poultry Farms", "Cattle Farms"])
+
+    with tabs[0]:
+        if st.button("Show Land-based Farm License Conditions"):
+            license_conditions = load_license_conditions()
+            st.write(license_conditions)
+
+    with tabs[1]:
+        if st.button("Show Poultry Farm License Conditions"):
+            poultry_conditions = load_poultry_conditions()
+            st.write(poultry_conditions)
+
+    with tabs[2]:
+        if st.button("Show Cattle Farm License Conditions"):
+            cattle_conditions = load_cattle_conditions()
+            st.write(cattle_conditions)
 
     # Section 4: Requirements to Start a Land-based Farm
     st.header("Requirements to Start a Land-based Farm")
-    image_url = "https://raw.githubusercontent.com/jungsterx/farm3/refs/heads/main/Screenshot%202024-10-14%20120536.png?token=GHSAT0AAAAAACY3ZIE2JDK7NY5KN7WC6RFEZYMVJNA"  # Update with your direct image URL
+    image_url = "https://raw.githubusercontent.com/jungsterx/farm3/main/Screenshot%202024-10-14%20120536.png"  # Update with your direct image URL
     st.image(image_url, use_column_width=True)
 
     # Define the links for each agency
@@ -108,7 +126,7 @@ if check_password():
         unsafe_allow_html=True
     )
 
-    # Section 4: Requirements to Start a Land-based Farm: LLM Query Section (for additional user queries)
+    # Section 5: Ask a question
     st.header("Ask a question")
     user_query = st.text_input("Type your question here")
     if user_query:
