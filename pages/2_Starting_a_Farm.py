@@ -78,18 +78,18 @@ if check_password():
             st.write(license_conditions)
 
     with tabs[1]:
-        if st.button("Show Poultry Farm License Conditions"):
+        if st.button("Show Additional Conditions for Poultry Farm License"):
             poultry_conditions = load_poultry_conditions()
             st.write(poultry_conditions)
 
     with tabs[2]:
-        if st.button("Show Cattle Farm License Conditions"):
+        if st.button("Show Additional Conditions for Cattle Farm License"):
             cattle_conditions = load_cattle_conditions()
             st.write(cattle_conditions)
 
     # Section 4: Requirements to Start a Land-based Farm
     st.header("Requirements to Start a Land-based Farm")
-    image_url = "https://raw.githubusercontent.com/jungsterx/farm3/main/Screenshot%202024-10-14%20120536.png"  # Update with your direct image URL
+    image_url = "https://raw.githubusercontent.com/jungsterx/farm3/main/Design.png"  # Permanent image URL
     st.image(image_url, use_column_width=True)
 
     # Define the links for each agency
