@@ -1,37 +1,25 @@
 import streamlit as st
 
 # Combined Welcome and About Us page
-st.title("Welcome to the Farm Setup Guide in Singapore")
+st.title("Welcome to the Land-Based Farm Setup Guide in Singapore")
 
 # --- Welcome Section ---
 st.subheader("Introduction")
-st.write("""
-This guide will help you understand the requirements and process of starting a farm in Singapore. 
-Explore the available grants, funding opportunities, and learn about the licensing conditions required for different types of farming. 
-Use the navigation on the left to explore more sections.
-""")
+st.write("This application aims to provide users with essential information about starting a land-based farm in Singapore. "
+         "It covers eligibility requirements, available grants, licensing conditions, and agency requirements.")
 
 # --- About Us Section ---
 st.subheader("About Us")
 
-st.write("""
-Our project is aimed at providing an interactive tool for individuals interested in starting a farm in Singapore. The tool integrates funding options and licensing conditions to make the process easier.
-""")
+st.write("Our goal is to support aspiring farmers by simplifying access to information and resources needed to start a farm. "
+         "We aim to empower individuals with the knowledge and tools to successfully navigate the farming landscape in Singapore.")
 
-# Project Scope
-st.subheader("Project Scope")
+st.header("Scope and Objectives")
 st.write("""
-This project aims to assist aspiring farmers in understanding the requirements for starting a farm, 
-identifying the funds and grants available, and providing detailed information on licensing conditions for different types of farms (e.g., general, poultry, and cattle).
-""")
-
-# Project Objectives
-st.subheader("Objectives")
-st.write("""
-- Help users determine the eligibility requirements to start a farm.
-- Provide an up-to-date list of available grants and funds for new farms.
-- Clarify the licensing conditions based on different types of farming operations.
-- Allow users to query specific licensing conditions using a chatbot.
+    - Provide comprehensive information on eligibility requirements for starting a land-based farm.
+    - List available funds and grants for aspiring farmers.
+    - Offer insights into the licensing conditions and requirements from various agencies.
+    - Enable users to interact with a chatbot for additional queries related to licensing conditions.
 """)
 
 # Data Sources
@@ -39,13 +27,13 @@ st.subheader("Data Source")
 st.write("""
 - Grants and funding data are retrieved from various government websites and public resources.
 - Licensing conditions are obtained from the Singapore Food Agency (SFA) documentation.
-- For more information on licensing, check the official [SFA Licensing PDF](https://example.com/sfa_licensing_pdf).
+- For more information on starting a farm, check the official [SFA Industry Guide on Starting a Farm PDF](https://www.sfa.gov.sg/docs/default-source/food-farming/sfa-farming-guide_fa-spread-high-res.pdf).
 """)
 
 # Features
-st.subheader("Features")
+st.header("Features")
 st.write("""
-- **Eligibility Requirements**: A section that lists the basic requirements for setting up a farm in Singapore.
-- **Funds and Grants**: A detailed list of grants and funding options available for farm setup.
-- **Licensing Conditions**: Chatbot functionality to answer questions about general, poultry, and cattle farm licensing requirements.
+    - Interactive chatbot for user inquiries.
+    - Detailed information on grants and funds.
+    - Licensing conditions for different types of farming.
 """)
