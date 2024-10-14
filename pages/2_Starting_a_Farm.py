@@ -1,6 +1,7 @@
 import streamlit as st
 import openai  # Ensure you have the OpenAI package installed
 import pandas as pd
+from PIL import Image  # Required to load and display the local image
 
 # Set OpenAI API key
 openai.api_key = st.secrets["OPENAI_API_KEY"]
@@ -70,27 +71,29 @@ if check_password():
 
     # Section 3: License Conditions with Tabs
     st.header("License Conditions")
-    tabs = st.tabs(["Land-based Farms", "Poultry Farms", "Cattle Farms"])
+    tabs = st.tabs(["General Farms (Fruits and Vegetables)", "Poultry Farms", "Cattle Farms"])
 
     with tabs[0]:
-        if st.button("Show Land-based Farm License Conditions"):
+        if st.button("General Farm License Conditions"):
             license_conditions = load_license_conditions()
             st.write(license_conditions)
 
     with tabs[1]:
-        if st.button("Show Additional Conditions for Poultry Farm License"):
+        if st.button("Additional Conditions for Poultry Farm License"):
             poultry_conditions = load_poultry_conditions()
             st.write(poultry_conditions)
 
     with tabs[2]:
-        if st.button("Show Additional Conditions for Cattle Farm License"):
+        if st.button("Additional Conditions for Cattle Farm License"):
             cattle_conditions = load_cattle_conditions()
             st.write(cattle_conditions)
 
     # Section 4: Requirements to Start a Land-based Farm
     st.header("Requirements to Start a Land-based Farm")
-    image_url = "https://github.com/jungsterx/farm3/blob/ef313ef22a4b7cee4a3a5207f6855ab5d68ce7fe/Design.png"  # Permanent image URL
-    st.image(image_url, use_column_width=True)
+    
+    # Load and display the local image from the "images" folder
+    image = Image.open('images/Design.png')  # Ensure the image is in the correct directory
+    st.image(image, use_column_width=True)
 
     # Define the links for each agency
     links = {
